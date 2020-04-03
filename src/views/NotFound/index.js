@@ -10,7 +10,7 @@ export default class NotFound extends Component {
                     <source src={bgVideo} type="video/mp4" />
                         Your browser does not support HTML5 video.
                 </video>
-                <div className="content"><p><a>BACK TO HOME PAGE</a></p></div>
+                <div className="content"><button>BACK TO HOME PAGE</button></div>
             </div>
         )
     }

@@ -23,18 +23,25 @@
     color: #f1f1f1;
     width: 100%;
     padding: 20px;
+    display: flex;
   }
 
-  .content p, .content p a {
+  .content button {
       text-align: center;
       font-weight: 600;
+      margin: auto;
+      background: transparent;
+      border: none;
       font-size: 28px;
       color: #FF00FF;
-      cursor: pointer;
-      text-decoration: underline;
+      text-decoration: underline;  
   }
 
-  .content p a:hover{
+  .content button {
+    cursor: pointer;
+  }
+
+  .content button:hover{
       padding-left: 16px;
       transition: all 0.2s;
   }

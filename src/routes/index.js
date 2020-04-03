@@ -7,7 +7,7 @@ import {
     ArticleEdit
 } from '../views'
 
-export const mainRouter = [{
+export const mainRoutes = [{
     pathname: '/login',
     component: Login
 
@@ -17,21 +17,29 @@ export const mainRouter = [{
 
 }]
 
-export const adminRouter = [{
+export const adminRoutes = [{
     pathname: '/admin/dashboard',
-    component: Dashboard
+    component: Dashboard,
+    title: 'Dashboard',
+    isNav: true,
+    icon: null
     
-},{
-    pathname: '/admin/setting',
-    component: Setting
-
 },{
     pathname: '/admin/article',
     component: ArticleList,
-    exact: true
-
+    title: 'Article List',
+    isNav: true,
+    exact: true,
+    icon: null
 },{
     pathname: '/admin/article/edit/:id',
-    component: ArticleEdit
+    component: ArticleEdit,
+    icon: null
+},{
+    pathname: '/admin/setting',
+    component: Setting,
+    title: 'Setting',
+    isNav: true,
+    icon: null
 
 }]
