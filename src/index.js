@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-import zhCN from 'antd/es/locale/zh_CN';
+import enGB from 'antd/es/locale/en_GB';
 import { ConfigProvider  } from 'antd'
 
 import App from './App'
@@ -11,7 +11,7 @@ import { mainRoutes } from './routes'
 import './index.less'
 
 render(
-    <ConfigProvider  locale={zhCN}>
+    <ConfigProvider  locale={enGB}>
         <Router>
             <Switch>
                 <Route path="/admin" render={(routerProps) => {

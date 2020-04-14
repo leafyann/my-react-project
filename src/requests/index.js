@@ -16,7 +16,6 @@ service.interceptors.request.use((config) => {
 })
 
 service.interceptors.response.use((resp)=>{
-    console.log(resp)
     if(resp.data.code === 200) {
         return resp.data
     } else {
@@ -25,9 +24,25 @@ service.interceptors.response.use((resp)=>{
     }
 })
 
+// get article list
 export const getArticles = (offset = 0, limited = 10) => {
-    return service.post('/api/vi/articleList', {
+    return service.post('/api/v1/articleList', {
         offset,
         limited
     })
+}
+
+// delete article through id
+export const deleteArticleById = (id) => {
+    return service.post(`/api/v1/articleDelete/${id}`)
+}
+
+// get article through id
+export const getArticleById = (id) => {
+    return service.post(`/api/v1/article/${id}`)
+}
+
+// save article
+export const saveArticle = (id, data) => {
+    return service.post(`/api/v1/articleEdit/${id}`, data)
 }

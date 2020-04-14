@@ -11,9 +11,11 @@ const { Header, Content, Sider } = Layout
 @withRouter
 class Frame extends Component {
     onMenuClick = ({ key }) => {
-        this.props.history.push(key) // 这里不懂？？？？
+        this.props.history.push(key)
     }
     render() {
+        const selectedKeysArr = this.props.location.pathname.split('/')
+        selectedKeysArr.length = 3
         return (
             <Layout>
                 <Header className="header" style={{backgroundColor: "#fff"}}>
@@ -23,7 +25,7 @@ class Frame extends Component {
                     <Sider width={200} className="site-layout-background">
                         <Menu
                         mode="inline"
-                        selectedKeys={[this.props.location.pathname]}
+                        selectedKeys={[selectedKeysArr.join('/')]}
                         onClick={this.onMenuClick}
                         style={{ height: '100%', borderRight: 0 }}
                         >
