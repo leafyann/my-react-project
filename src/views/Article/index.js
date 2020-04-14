@@ -131,7 +131,6 @@ deleteArticle = () => {
   }
 
   getData = () => {
-    console.log('set stats')
     this.setState({
       isLoading: true
     })
@@ -178,7 +177,7 @@ deleteArticle = () => {
   }
     render() {
         return (
-            <Card title="Article list" bordered={false} extra={<a href="#">More</a>} style={{ width: 600 }}>
+            <Card title="Article list" bordered={false} extra={<Button onClick={this.toEdit.bind(this,undefined)}>Add</Button>} style={{ width: 600 }}>
                 <Table 
                     rowKey={record => record.id}
                     dataSource={this.state.dataSource} 

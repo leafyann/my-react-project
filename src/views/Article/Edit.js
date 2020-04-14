@@ -47,7 +47,9 @@ class Edit extends Component {
         this.setState({
             isLoading: true
         })
-        getArticleById(this.props.match.params.id)
+        console.log(this)
+        if (this.props.match.params.id != 'undefined'){
+            getArticleById(this.props.match.params.id)
             .then(resp => {
                 resp.data.createAt = moment(resp.data.createAt)
                 this.formRef.current.setFieldsValue(resp.data)
@@ -58,6 +60,12 @@ class Edit extends Component {
                     isLoading: false
                 })
             })
+        } else {
+            this.setState({
+                isLoading: false
+            })
+        }
+
     }
 
     render(...state) {
@@ -88,12 +96,13 @@ class Edit extends Component {
                     console.log(resp)
                     message.success(resp.data.msg)
                     // trun to article list page if needed
-                    this.props.history.push('/admin/article')
+                   
                 })
                 .finally(() => {
                     this.setState({
                         isLoading: false
                     })
+                    this.props.history.push('/admin/article')
                 })
             }
           
@@ -105,7 +114,7 @@ class Edit extends Component {
             <Card
             // title={this.props.history.location.state.articleTitle}
             bordered={false}
-            extra={<Button>cancle</Button>}
+            extra={<Button onClick={this.props.history.goBack}>cancle</Button>}
             >
                 <Spin spinning={this.state.isLoading}>
                     <Form

@@ -44,5 +44,5 @@ export const getArticleById = (id) => {
 
 // save article
 export const saveArticle = (id, data) => {
-    return service.post(`/api/v1/articleEdit/${id}`, data)
+    return service.patch(`/api/v1/articleEdit/${id}`, data)
 }
