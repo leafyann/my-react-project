@@ -47,8 +47,8 @@ class Edit extends Component {
         this.setState({
             isLoading: true
         })
-        console.log(this)
-        if (this.props.match.params.id != 'undefined'){
+
+        if (this.props.match.params.id != '0'){
             getArticleById(this.props.match.params.id)
             .then(resp => {
                 resp.data.createAt = moment(resp.data.createAt)
@@ -93,7 +93,6 @@ class Edit extends Component {
             })
               saveArticle(this.props.match.params.id, saveArticleData)
                 .then(resp => {
-                    console.log(resp)
                     message.success(resp.data.msg)
                     // trun to article list page if needed
                    

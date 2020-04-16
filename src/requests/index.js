@@ -46,3 +46,9 @@ export const getArticleById = (id) => {
 export const saveArticle = (id, data) => {
     return service.patch(`/api/v1/articleEdit/${id}`, data)
 }
+
+// get article viewer amount
+export const getArticleAmount = () => {
+    return service.post('/api/v1/articleAmount')
+}
+

@@ -177,7 +177,7 @@ deleteArticle = () => {
   }
     render() {
         return (
-            <Card title="Article list" bordered={false} extra={<Button onClick={this.toEdit.bind(this,undefined)}>Add</Button>} style={{ width: 600 }}>
+            <Card title="Article list" bordered={false} extra={<Button onClick={this.toEdit.bind(this,0)}>Add</Button>} style={{ width: 600 }}>
                 <Table 
                     rowKey={record => record.id}
                     dataSource={this.state.dataSource} 
