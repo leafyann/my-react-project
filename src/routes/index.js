@@ -4,7 +4,8 @@ import {
     NotFound,
     Setting,
     ArticleList,
-    ArticleEdit
+    ArticleEdit,
+    Notification
 } from '../views'
 
 export const mainRoutes = [{
@@ -34,6 +35,10 @@ export const adminRoutes = [{
 },{
     pathname: '/admin/article/edit/:id',
     component: ArticleEdit,
+    icon: null
+},{
+    pathname: '/admin/notification',
+    component: Notification,
     icon: null
 },{
     pathname: '/admin/setting',
