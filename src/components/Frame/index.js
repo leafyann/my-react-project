@@ -3,18 +3,18 @@ import {
     Layout, 
     Menu, 
     Dropdown, 
-    message, 
-    Button, 
     Avatar,
     Badge 
 } from 'antd'
 import { 
-    DownOutlined, 
     UserOutlined,NotificationOutlined, 
     SettingOutlined, 
     LogoutOutlined 
 } from '@ant-design/icons';
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+
+import { getNotification } from '../../actions/notification'
 import './frame.less'
 import logo from './pipi_logo.png'
 
@@ -24,12 +24,21 @@ const { Header, Content, Sider } = Layout
 
 // const menus = adminRoutes.filter(route => route.isNav === true)
 
+const mapState = state => {
+    return {
+        notificationCount: state.notification.list.filter(item => item.hasRead === false).length
+    }
+}
+
 
 @withRouter
+@connect(mapState, { getNotification })
 class Frame extends Component {
+    componentDidMount(){
+        this.props.getNotification()
+    }
     onMenuClick = ({ key }) => {
         this.props.history.push(key)
-        console.log({key})
     }
       
       handleMenuClick = ({ key }) => {
@@ -42,7 +51,7 @@ class Frame extends Component {
             <Menu onClick={this.handleMenuClick}>
               <Menu.Item key="/admin/notification">
                 <NotificationOutlined />
-                <Badge dot>Notification</Badge>
+                <Badge dot={Boolean(this.props.notificationCount)}>Notification</Badge>
               </Menu.Item>
               <Menu.Item key="/admin/setting">
                 <SettingOutlined />
@@ -66,7 +75,7 @@ class Frame extends Component {
                 <Dropdown overlay={menu}>
                     
                         <div onClick={this.onMenuClick} >
-                        <Badge dot>
+                        <Badge count={this.props.notificationCount}>
                             <Avatar shape="square" icon={<UserOutlined />} />
                         </Badge>
                         </div>

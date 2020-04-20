@@ -48,7 +48,7 @@ class Edit extends Component {
             isLoading: true
         })
 
-        if (this.props.match.params.id != '0'){
+        if (this.props.match.params.id !== '0'){
             getArticleById(this.props.match.params.id)
             .then(resp => {
                 resp.data.createAt = moment(resp.data.createAt)
@@ -80,9 +80,6 @@ class Edit extends Component {
           }
         const config = {
             rules: [{ type: 'object', required: true, message: 'Please select time!' }],
-          };
-        const rangeConfig = {
-            rules: [{ type: 'array', required: true, message: 'Please select time!' }],
           };
         const onFinish = values => {
             const saveArticleData = Object.assign({}, values, {
