@@ -7,7 +7,7 @@ import {
     Badge 
 } from 'antd'
 import { 
-    UserOutlined,NotificationOutlined, 
+    NotificationOutlined, 
     SettingOutlined, 
     LogoutOutlined 
 } from '@ant-design/icons';
@@ -15,6 +15,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { getNotification } from '../../actions/notification'
+import { logout } from '../../actions/user'
 import './frame.less'
 import logo from './pipi_logo.png'
 
@@ -26,13 +27,15 @@ const { Header, Content, Sider } = Layout
 
 const mapState = state => {
     return {
-        notificationCount: state.notification.list.filter(item => item.hasRead === false).length
+        notificationCount: state.notification.list.filter(item => item.hasRead === false).length,
+        avatar: state.user.avatar,
+        displayName: state.user.displayName
     }
 }
 
 
 @withRouter
-@connect(mapState, { getNotification })
+@connect(mapState, { getNotification, logout })
 class Frame extends Component {
     componentDidMount(){
         this.props.getNotification()
@@ -41,12 +44,18 @@ class Frame extends Component {
         this.props.history.push(key)
     }
       
-      handleMenuClick = ({ key }) => {
-        this.props.history.push(key)
-      }
+    handleMenuClick = ({ key }) => {
+        if (key === '/logout'){
+            this.props.logout()
+            console.log('log out!')
+        } else {
+            this.props.history.push(key)
+        }       
+    }
 
 
     render() {
+        console.log(this.props.avatar)
         const menu = (
             <Menu onClick={this.handleMenuClick}>
               <Menu.Item key="/admin/notification">
@@ -57,7 +66,7 @@ class Frame extends Component {
                 <SettingOutlined />
                 Settings
               </Menu.Item>
-              <Menu.Item key="/login">
+              <Menu.Item key="/logout">
                 <LogoutOutlined />
                 Log out
               </Menu.Item>
@@ -76,7 +85,7 @@ class Frame extends Component {
                     
                         <div onClick={this.onMenuClick} >
                         <Badge count={this.props.notificationCount}>
-                            <Avatar shape="square" icon={<UserOutlined />} />
+                            <Avatar src={this.props.avatar} />
                         </Badge>
                         </div>
                     

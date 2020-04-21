@@ -12,7 +12,6 @@ const mapState = state => ({
 @connect(mapState)
 class App extends Component {
     render() {
-        console.log(this.props.isLogin)
         return (
             this.props.isLogin
             ?
